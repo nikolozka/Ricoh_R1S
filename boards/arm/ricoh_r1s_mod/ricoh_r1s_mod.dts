@@ -1,0 +1,128 @@
+// Copyright (c) 2023 Nordic Semiconductor ASA
+// SPDX-License-Identifier: Apache-2.0
+
+/dts-v1/;
+#include <nordic/nrf52832_qfaa.dtsi>
+#include "ricoh_r1s_mod-pinctrl.dtsi"
+
+/ {
+	model = "ricoh_r1s_mod";
+	compatible = "nikolozka,ricoh-r1s-mod";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "LED_EN";
+		};
+		led1: led_1 {
+			gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+			label = "LED_R";
+		};
+		led2: led_2 {
+			gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
+			label = "LED_G";
+		};
+		led3: led_3 {
+			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+			label = "LED_B";
+		};
+	};
+
+	/*pwmleds {
+		compatible = "pwm-leds";
+
+		red_pwm_led: red_pwm_led {
+			pwms = <&gpio0 12 15625000 PWM_POLARITY_INVERTED>;
+		};
+		green_pwm_led: green_pwm_led {
+			pwms = <&gpio0 11 15625000 PWM_POLARITY_INVERTED>;
+		};
+		blue_pwm_led: blue_pwm_led {
+			pwms = <&gpio0 10 15625000 PWM_POLARITY_INVERTED>;
+		};
+	};*/
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	//zephyr,concat-buf-size = <2048>;                                                      
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+    ssd1306: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+		status = "okay";
+		label = "SSD1306";
+		reset-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW)>;
+        reg = <0x3c>;
+        height = <32>;
+        width  = <128>;
+        segment-offset  = <0>;
+        page-offset     = <0>;
+        display-offset  = <0>;
+        multiplex-ratio = <31>;
+        prechargep      = <0xD1>;
+        segment-remap;
+        com-invdir;
+		com-sequential;
+
+    };
+	/*lsmdso: lsm6dso@6a {
+        compatible = "st,lsm6dso";
+		status = "okay";
+		label = "LSM6DSO";
+        reg = <0x6a>;
+    };*/
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&spi0 {
+	status = "disabled";
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x0 0xc000>;
+		};
+		slot0_partition: partition@c000 {
+			label = "image-0";
+			reg = <0xc000 0x32000>;
+		};
+		slot1_partition: partition@3e000 {
+			label = "image-1";
+			reg = <0x3e000 0x32000>;
+		};
+		scratch_partition: partition@70000 {
+			label = "image-scratch";
+			reg = <0x70000 0xa000>;
+		};
+		storage_partition: partition@7a000 {
+			label = "storage";
+			reg = <0x7a000 0x6000>;
+		};
+	};
+};
+

@@ -1,0 +1,12 @@
+# Copyright (c) 2023 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_RICOH_R1S_MOD
+
+config BOARD
+	default "ricoh_r1s_mod"
+
+config BT_CTLR
+   default BT
+
+endif

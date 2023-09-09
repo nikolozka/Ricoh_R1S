@@ -1,0 +1,6 @@
+# Copyright (c) 2023 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_RICOH_R1S_MOD
+	bool "ricoh_r1s_mod"
+	depends on SOC_NRF52832_QFAA
