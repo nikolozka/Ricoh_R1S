@@ -5,7 +5,7 @@
         led2 = &led2;
         led3 = &led3;
         display0 = &ssd1306;
-        //accel0 = &lsmdso;
+        accel0 = &lsmdso;
 
     };
 };

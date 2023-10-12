@@ -59,6 +59,7 @@
 	pinctrl-0 = <&i2c0_default>;
 	pinctrl-1 = <&i2c0_sleep>;
 	pinctrl-names = "default", "sleep";
+
     ssd1306: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
 		status = "okay";
@@ -77,12 +78,14 @@
 		com-sequential;
 
     };
-	/*lsmdso: lsm6dso@6a {
+
+	lsmdso: lsm6dso@6a {
         compatible = "st,lsm6dso";
 		status = "okay";
 		label = "LSM6DSO";
         reg = <0x6a>;
-    };*/
+		irq-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+    };
 };
 
 &gpio0 {

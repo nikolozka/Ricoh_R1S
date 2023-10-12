@@ -36,42 +36,7 @@
 
 
 #define DISPLAY_BUFFER_PITCH 128
-
-uint8_t buf[512] = {
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x80, 0x80, 0x00, 
-0x00, 0x80, 0x80, 0x80, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 
-0xc0, 0xe0, 0xf0, 0xf8, 0xfc, 0xfc, 0xfe, 0xfe, 0xff, 0xff, 0xff, 0x1f, 0x1f, 0x0f, 0x0f, 0x00, 
-0x00, 0x0f, 0x0f, 0x1f, 0x1f, 0xff, 0xff, 0xff, 0xfe, 0xfe, 0xfc, 0xfc, 0xf8, 0xf0, 0xe0, 0xc0, 
-0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0xf8, 0xfe, 0xff, 
-0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x86, 0x86, 0x86, 0x86, 0x86, 
-0x86, 0x86, 0x86, 0x86, 0x86, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
-0xff, 0xfe, 0xf8, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 
-0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x21, 0x21, 0x21, 0x21, 0x21, 
-0x21, 0x21, 0x21, 0x21, 0x21, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
-0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+//#define ENABLE_LSM6DSO
 
 uint8_t buf2[512] = {
 // 'freg', 128x32px
@@ -109,9 +74,9 @@ uint8_t buf2[512] = {
 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
 };
 
+#ifdef DISPLAY
 static const struct device *display = DEVICE_DT_GET(DT_NODELABEL(ssd1306));
-
-
+#endif
 /*
 todo:
 RGB LED - minimally done
@@ -128,7 +93,7 @@ BLE STACK -  dfu + advertising
 #define DEVICE_NAME             CONFIG_BT_DEVICE_NAME
 #define DEVICE_NAME_LEN         (sizeof(DEVICE_NAME) - 1)
 
-#define RUN_LED_BLINK_INTERVAL	100
+#define RUN_LED_BLINK_INTERVAL	1000
 
 LOG_MODULE_REGISTER(Ricoh_R1S, CONFIG_LOG_DEFAULT_LEVEL);
 
@@ -137,10 +102,10 @@ LOG_MODULE_REGISTER(Ricoh_R1S, CONFIG_LOG_DEFAULT_LEVEL);
 #define LED_B DT_ALIAS(led2)
 #define LED_G DT_ALIAS(led3)
 
-static struct gpio_dt_spec mled0 = GPIO_DT_SPEC_GET_OR(LED_COMM, gpios,{0});
-static struct gpio_dt_spec mled1 = GPIO_DT_SPEC_GET_OR(LED_R, gpios,{0});
-static struct gpio_dt_spec mled2 = GPIO_DT_SPEC_GET_OR(LED_G, gpios,{0});
-static struct gpio_dt_spec mled3 = GPIO_DT_SPEC_GET_OR(LED_B, gpios,{0});
+static struct gpio_dt_spec mled0 = GPIO_DT_SPEC_GET_OR(LED_COMM, 	gpios,{0});
+static struct gpio_dt_spec mled1 = GPIO_DT_SPEC_GET_OR(LED_R, 		gpios,{0});
+static struct gpio_dt_spec mled2 = GPIO_DT_SPEC_GET_OR(LED_G, 		gpios,{0});
+static struct gpio_dt_spec mled3 = GPIO_DT_SPEC_GET_OR(LED_B, 		gpios,{0});
 
 
 static const struct bt_data ad[] = {
@@ -148,27 +113,33 @@ static const struct bt_data ad[] = {
 	BT_DATA(BT_DATA_NAME_COMPLETE, DEVICE_NAME, DEVICE_NAME_LEN),
 };
 
-static const struct bt_data sd[] = {
+/*static const struct bt_data sd[] = {
 	BT_DATA_BYTES(BT_DATA_UUID128_ALL,
 		      0x84, 0xaa, 0x60, 0x74, 0x52, 0x8a, 0x8b, 0x86,
 		      0xd3, 0x4c, 0xb7, 0x1d, 0x1d, 0xdc, 0x53, 0x8d),
+};*/
+
+static const struct bt_data sd[] = {
+	BT_DATA_BYTES(BT_DATA_UUID128_ALL, BT_UUID_LBS_VAL),
 };
 
 
 static void connected(struct bt_conn *conn, uint8_t err)
 {
 	if (err) {
-		LOG_ERR("Connection failed (err %u)\n", err);
+		LOG_ERR("Connection failed (err %u)", err);
 		return;
 	}
-	gpio_pin_set_dt(&mled3, 1);
-	LOG_INF("Connected\n");
+	gpio_pin_set_dt(&mled2, 1);
+	gpio_pin_set_dt(&mled3, 0);
+	LOG_INF("Connected");
 }
 
 static void disconnected(struct bt_conn *conn, uint8_t reason)
 {
-	gpio_pin_set_dt(&mled3, 0);
-	LOG_INF("Disconnected (reason %u)\n", reason);
+	gpio_pin_set_dt(&mled2, 0);
+	gpio_pin_set_dt(&mled3, 1);
+	LOG_INF("Disconnected (reason %u)", reason);
 }
 
 #ifdef CONFIG_BT_LBS_SECURITY_ENABLED
@@ -180,9 +151,9 @@ static void security_changed(struct bt_conn *conn, bt_security_t level,
 	bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
 
 	if (!err) {
-		LOG_INF("Security changed: %s level %u\n", addr, level);
+		LOG_INF("Security changed: %s level %u", addr, level);
 	} else {
-		LOG_ERR("Security failed: %s level %u err %d\n", addr, level,
+		LOG_ERR("Security failed: %s level %u err %d", addr, level,
 			err);
 	}
 }
@@ -203,7 +174,7 @@ static void auth_passkey_display(struct bt_conn *conn, unsigned int passkey)
 
 	bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
 
-	LOG_INF("Passkey for %s: %06u\n", addr, passkey);
+	LOG_INF("Passkey for %s: %06u", addr, passkey);
 }
 
 static void auth_cancel(struct bt_conn *conn)
@@ -212,7 +183,7 @@ static void auth_cancel(struct bt_conn *conn)
 
 	bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
 
-	LOG_INF("Pairing cancelled: %s\n", addr);
+	LOG_INF("Pairing cancelled: %s", addr);
 }
 
 static void pairing_complete(struct bt_conn *conn, bool bonded)
@@ -221,7 +192,7 @@ static void pairing_complete(struct bt_conn *conn, bool bonded)
 
 	bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
 
-	LOG_INF("Pairing completed: %s, bonded: %d\n", addr, bonded);
+	LOG_INF("Pairing completed: %s, bonded: %d", addr, bonded);
 }
 
 static void pairing_failed(struct bt_conn *conn, enum bt_security_err reason)
@@ -230,7 +201,7 @@ static void pairing_failed(struct bt_conn *conn, enum bt_security_err reason)
 
 	bt_addr_le_to_str(bt_conn_get_dst(conn), addr, sizeof(addr));
 
-	LOG_ERR("Pairing failed conn: %s, reason %d\n", addr, reason);
+	LOG_ERR("Pairing failed conn: %s, reason %d", addr, reason);
 }
 
 static struct bt_conn_auth_cb conn_auth_callbacks = {
@@ -262,15 +233,27 @@ static struct bt_lbs_cb lbs_callbacs = {
 	.button_cb = app_button_cb,
 };
 
-/*static void button_changed(uint32_t button_state, uint32_t has_changed)
+static void button_changed(uint32_t button_state, uint32_t has_changed)
 {
-	if (has_changed & USER_BUTTON) {
+	/*if (has_changed & USER_BUTTON) {
 		uint32_t user_button_state = button_state & USER_BUTTON;
 
 		bt_lbs_send_button_state(user_button_state);
 		app_button_state = user_button_state ? true : false;
+	}*/
+}
+
+static int init_button(void)
+{
+	int err;
+
+	err = dk_buttons_init(button_changed);
+	if (err) {
+		printk("Cannot init buttons (err: %d)\n", err);
 	}
-}*/
+
+	return err;
+}
 
 int config_leds(){
 
@@ -278,42 +261,42 @@ int config_leds(){
 
 	if (!device_is_ready(mled0.port)) {
 		LOG_ERR("Error: LED device is not ready %s !", mled0.port->name);
-		return;
+		return -1;
 	}
 	ret = gpio_pin_configure_dt(&mled0, GPIO_OUTPUT);
 	if (ret != 0) {
 		LOG_ERR("Failed to configure LED device");
-		return;
+		return -1;
 	}
 
 	if (!device_is_ready(mled1.port)) {
 		LOG_ERR("Error: LED device is not ready %s !", mled1.port->name);
-		return;
+		return -1;
 	}
 	ret = gpio_pin_configure_dt(&mled1, GPIO_OUTPUT);
 	if (ret != 0) {
 		LOG_ERR("Failed to configure LED device");
-		return;
+		return -1;
 	}
 
 	if (!device_is_ready(mled2.port)) {
 		LOG_ERR("Error: LED device is not ready %s !", mled2.port->name);
-		return;
+		return -1;
 	}
 	ret = gpio_pin_configure_dt(&mled2, GPIO_OUTPUT);
 	if (ret != 0) {
 		LOG_ERR("Failed to configure LED device");
-		return;
+		return -1;
 	}
 
 	if (!device_is_ready(mled3.port)) {
 		LOG_ERR("Error: LED device is not ready %s !", mled3.port->name);
-		return;
+		return -1;
 	}
 	ret = gpio_pin_configure_dt(&mled3, GPIO_OUTPUT);
 	if (ret != 0) {
 		LOG_ERR("Failed to configure LED device");
-		return;
+		return -1;
 	}
 		
 	gpio_pin_set_dt(&mled0, 1);
@@ -324,6 +307,8 @@ int config_leds(){
 	return 0;
 
 }
+
+#ifdef ENABLE_LSM6DSO
 
 static inline float out_ev(struct sensor_value *val)
 {
@@ -337,25 +322,24 @@ static void fetch_and_display(const struct device *dev)
 
 	trig_cnt++;
 
-	/* lsm6dso accel */
+	// lsm6dso accel 
 	sensor_sample_fetch_chan(dev, SENSOR_CHAN_ACCEL_XYZ);
 	sensor_channel_get(dev, SENSOR_CHAN_ACCEL_X, &x);
 	sensor_channel_get(dev, SENSOR_CHAN_ACCEL_Y, &y);
 	sensor_channel_get(dev, SENSOR_CHAN_ACCEL_Z, &z);
 
-	printf("accel x:%f ms/2 y:%f ms/2 z:%f ms/2\n",
-			out_ev(&x), out_ev(&y), out_ev(&z));
+	LOG_INF("accel x:%f ms/2 y:%f ms/2 z:%f ms/2",	out_ev(&x), out_ev(&y), out_ev(&z));
 
-	/* lsm6dso gyro */
+	// lsm6dso gyro 
 	sensor_sample_fetch_chan(dev, SENSOR_CHAN_GYRO_XYZ);
 	sensor_channel_get(dev, SENSOR_CHAN_GYRO_X, &x);
 	sensor_channel_get(dev, SENSOR_CHAN_GYRO_Y, &y);
 	sensor_channel_get(dev, SENSOR_CHAN_GYRO_Z, &z);
 
-	printf("gyro x:%f rad/s y:%f rad/s z:%f rad/s\n",
+	LOG_INF("gyro x:%f rad/s y:%f rad/s z:%f rad/s",
 			out_ev(&x), out_ev(&y), out_ev(&z));
 
-	printf("trig_cnt:%d\n\n", trig_cnt);
+	LOG_INF("trig_cnt:%d\n", trig_cnt);
 }
 
 static int set_sampling_freq(const struct device *dev)
@@ -363,50 +347,57 @@ static int set_sampling_freq(const struct device *dev)
 	int ret = 0;
 	struct sensor_value odr_attr;
 
-	/* set accel/gyro sampling frequency to 12.5 Hz */
+	// set accel/gyro sampling frequency to 12.5 Hz 
 	odr_attr.val1 = 12.5;
 	odr_attr.val2 = 0;
 
 	ret = sensor_attr_set(dev, SENSOR_CHAN_ACCEL_XYZ,
 			SENSOR_ATTR_SAMPLING_FREQUENCY, &odr_attr);
 	if (ret != 0) {
-		printf("Cannot set sampling frequency for accelerometer.\n");
+		LOG_INF("Cannot set sampling frequency for accelerometer.");
 		return ret;
 	}
 
 	ret = sensor_attr_set(dev, SENSOR_CHAN_GYRO_XYZ,
 			SENSOR_ATTR_SAMPLING_FREQUENCY, &odr_attr);
 	if (ret != 0) {
-		printf("Cannot set sampling frequency for gyro.\n");
+		LOG_INF("Cannot set sampling frequency for gyro.");
 		return ret;
 	}
 
 	return 0;
 }
 
+#endif
+
 void main(void)
 {
-	int blink_status = 0;
 	int err;
 
-	LOG_INF("Starting Bluetooth Peripheral LBS example\n");
+	LOG_INIT();
+	LOG_INF("Ricoh_R1s Starting");
 
 	if(config_leds()){
 		LOG_ERR("Couldn't configure LEDs");
 	}
-
-	/*const struct device *const dev = DEVICE_DT_GET(DT_NODELABEL(lsmdso));
+#ifdef ENABLE_LSM6DSO
+	const struct device *const dev = DEVICE_DT_GET(DT_NODELABEL(lsmdso));
 
 	if (!device_is_ready(dev)) {
-		printk("%s: device not ready.\n", dev->name);
-		return;
+		printk("%s: device not ready.", dev->name);
+		//return;
 	}
 
-	printf("Testing LSM6DSO sensor in polling mode.\n\n");
+	LOG_INF("Testing LSM6DSO sensor in polling mode.\n");
 	if (set_sampling_freq(dev) != 0) {
-		return;
-	}*/
+		//return;
+	}
 
+	fetch_and_display(dev);
+
+#endif
+
+#ifdef DISPLAY
 
 	if (display == NULL) {
 		LOG_ERR("device pointer is NULL");
@@ -424,12 +415,12 @@ void main(void)
 	const uint16_t x_res = capabilities.x_resolution;
 	const uint16_t y_res = capabilities.y_resolution;
 
-	LOG_INF("x_resolution: %d", x_res);
-	LOG_INF("y_resolution: %d", y_res);
-	LOG_INF("supported pixel formats: %d", capabilities.supported_pixel_formats);
-	LOG_INF("screen_info: %d", capabilities.screen_info);
-	LOG_INF("current_pixel_format: %d", capabilities.current_pixel_format);
-	LOG_INF("current_orientation: %d", capabilities.current_orientation);
+	LOG_DBG("x_resolution: %d", x_res);
+	LOG_DBG("y_resolution: %d", y_res);
+	LOG_DBG("supported pixel formats: %d", capabilities.supported_pixel_formats);
+	LOG_DBG("screen_info: %d", capabilities.screen_info);
+	LOG_DBG("current_pixel_format: %d", capabilities.current_pixel_format);
+	LOG_DBG("current_orientation: %d", capabilities.current_orientation);
 		
 	const struct display_buffer_descriptor buf_desc = {
 		.width = x_res,
@@ -447,78 +438,59 @@ void main(void)
 	}
 	size_t ms_sleep = 5;
 
+#endif
+
 	if (IS_ENABLED(CONFIG_BT_LBS_SECURITY_ENABLED)) {
 		err = bt_conn_auth_cb_register(&conn_auth_callbacks);
 		if (err) {
-			LOG_ERR("Failed to register authorization callbacks.\n");
+			LOG_ERR("Failed to register authorization callbacks.");
 			return;
 		}
 
 		err = bt_conn_auth_info_cb_register(&conn_auth_info_callbacks);
 		if (err) {
-			LOG_ERR("Failed to register authorization info callbacks.\n");
+			LOG_ERR("Failed to register authorization info callbacks.");
 			return;
 		}
 	}
 
-	LOG_INF("build time: " __DATE__ " " __TIME__ "\n");
+	LOG_INF("build time: " __DATE__ " " __TIME__);
 
 	err = bt_enable(NULL);
 	if (err) {
-		LOG_ERR("Bluetooth init failed (err %d)\n", err);
+		LOG_ERR("Bluetooth init failed (err %d)", err);
 		return;
 	}
 
-	LOG_INF("Bluetooth initialized\n");
+	LOG_INF("Bluetooth initialized");
 
 	if (IS_ENABLED(CONFIG_SETTINGS)) {
 		settings_load();
 	}
 
-	/*err = bt_lbs_init(&lbs_callbacs);
+	err = bt_lbs_init(&lbs_callbacs);
 	if (err) {
-		LOG_ERR("Failed to init LBS (err:%d)\n", err);
-		return;
-	}*/
-
-	err = bt_le_adv_start(BT_LE_ADV_CONN, ad, ARRAY_SIZE(ad),
-			      sd, ARRAY_SIZE(sd));
-	if (err) {
-		LOG_ERR("Advertising failed to start (err %d)\n", err);
+		LOG_ERR("Failed to init LBS (err:%d)", err);
 		return;
 	}
 
-	LOG_INF("Advertising successfully started\n");
+	err = bt_le_adv_start(BT_LE_ADV_CONN, ad, ARRAY_SIZE(ad), sd, ARRAY_SIZE(sd));
+	if (err) {
+		LOG_ERR("Advertising failed to start (err %d)", err);
+		return;
+	}
 
-	for (;;) {
-		gpio_pin_toggle_dt(&mled2);
-		/*static uint16_t idx = 0;
-		
-		for(int i=0; i<512; i++){
-			buf2[i]=0;
+	LOG_INF("Advertising successfully started");
+
+
+	while(1) {
+
+		if (LOG_PROCESS() == false) {
+			gpio_pin_toggle_dt(&mled1);
+#ifdef ENABLE_LSM6DSO
+			fetch_and_display(dev);
+#endif
+			k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 		}
-
-		buf2[idx++] = 0xFF; 
-
-		if (idx==512){
-			idx=0;
-		}*/
-
-		if (display_write(display, 0, 0, &buf_desc, buf2) != 0) {
-			LOG_ERR("could not write to display");
-		}
-
-		for (size_t i = 0; i < 255; i++) {
-			display_set_contrast(display, i);
-			k_sleep(K_MSEC(ms_sleep));
-		}
-
-		// Decrease brightness
-		for (size_t i = 255; i > 0; i--) {
-			display_set_contrast(display, i);
-			k_sleep(K_MSEC(ms_sleep));
-		}
-		//fetch_and_display(dev);
-		//k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 	}
 }
