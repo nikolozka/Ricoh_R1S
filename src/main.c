@@ -13,31 +13,32 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 #include <soc.h>
-
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/hci.h>
 #include <zephyr/bluetooth/conn.h>
 #include <zephyr/bluetooth/uuid.h>
 #include <zephyr/bluetooth/gatt.h>
-
 #include <bluetooth/services/lbs.h>
-
 #include <zephyr/settings/settings.h>
-
 #include <zephyr/logging/log.h>
 #include <zephyr/logging/log_ctrl.h>
-
 #include <stdint.h>
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/display.h>
-
+#include <zephyr/devicetree.h>
 #include <zephyr/drivers/sensor.h>
+#include <lvgl.h>
+
+
+
 
 
 #define DISPLAY_BUFFER_PITCH 128
 #define ENABLE_LSM6DSO
+//#define ENABLE_DISPLAY
 
+#ifdef ENABLE_DISPLAY
 uint8_t buf2[512] = {
 // 'freg', 128x32px
 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
@@ -74,8 +75,11 @@ uint8_t buf2[512] = {
 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
 };
 
-#ifdef CONFIG_DISPLAY
 static const struct device *display = DEVICE_DT_GET(DT_NODELABEL(ssd1306));
+#endif
+#ifdef CONFIG_LVGL
+static const struct device *display = DEVICE_DT_GET(DT_NODELABEL(ssd1306));
+static uint32_t count;
 #endif
 /*
 todo:
@@ -394,7 +398,7 @@ void main(void)
 
 #endif
 
-#ifdef CONFIG_DISPLAY
+#ifdef ENABLE_DISPLAY
 
 	if (display == NULL) {
 		LOG_ERR("device pointer is NULL");
@@ -434,6 +438,42 @@ void main(void)
 		LOG_ERR("could not set display contrast");
 	}
 	size_t ms_sleep = 5;
+
+#endif
+
+#ifdef CONFIG_LVGL
+	char count_str[11] = {0};
+	lv_obj_t *hello_world_label;
+	lv_obj_t *count_label;
+
+	if (display == NULL) {
+		LOG_ERR("device pointer is NULL");
+		return;
+	}
+
+	if (!device_is_ready(display)) {
+		LOG_ERR("display device is not ready");
+		return;
+	}
+
+	if (IS_ENABLED(CONFIG_LV_Z_POINTER_KSCAN)) {
+		lv_obj_t *hello_world_button;
+
+		hello_world_button = lv_btn_create(lv_scr_act());
+		lv_obj_align(hello_world_button, LV_ALIGN_CENTER, 0, 0);
+		hello_world_label = lv_label_create(hello_world_button);
+	} else {
+		hello_world_label = lv_label_create(lv_scr_act());
+	}
+
+	lv_label_set_text(hello_world_label, "Hello world!");
+	lv_obj_align(hello_world_label, LV_ALIGN_CENTER, 0, 0);
+
+	count_label = lv_label_create(lv_scr_act());
+	lv_obj_align(count_label, LV_ALIGN_BOTTOM_MID, 0, 0);
+
+	lv_task_handler();
+	display_blanking_off(display);
 
 #endif
 
@@ -486,6 +526,12 @@ void main(void)
 			gpio_pin_toggle_dt(&mled1);
 #ifdef ENABLE_LSM6DSO
 			fetch_and_display(dev);
+#endif
+#ifdef CONFIG_LVGL
+			sprintf(count_str, "%d", count/100U);
+			lv_label_set_text(count_label, count_str);
+			lv_task_handler();
+			++count;	
 #endif
 			k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 		}

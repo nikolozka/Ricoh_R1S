@@ -51,11 +51,11 @@
 	};*/
 };
 
-&i2c0 {
+arduino_i2c: &i2c0 {
 	compatible = "nordic,nrf-twi";
 	//zephyr,concat-buf-size = <2048>;                                                      
 	status = "okay";
-	clock-frequency = <I2C_BITRATE_STANDARD>;
+	clock-frequency = <I2C_BITRATE_FAST>;
 	pinctrl-0 = <&i2c0_default>;
 	pinctrl-1 = <&i2c0_sleep>;
 	pinctrl-names = "default", "sleep";
@@ -112,16 +112,16 @@
 		};
 		slot0_partition: partition@c000 {
 			label = "image-0";
-			reg = <0xc000 0x32000>;
+			reg = <0xc000 0x37000>;
 		};
-		slot1_partition: partition@3e000 {
+		slot1_partition: partition@43000 {
 			label = "image-1";
-			reg = <0x3e000 0x32000>;
+			reg = <0x43000 0x37000>;
 		};
-		scratch_partition: partition@70000 {
+		/*scratch_partition: partition@70000 {
 			label = "image-scratch";
 			reg = <0x70000 0xa000>;
-		};
+		};*/
 		storage_partition: partition@7a000 {
 			label = "storage";
 			reg = <0x7a000 0x6000>;
