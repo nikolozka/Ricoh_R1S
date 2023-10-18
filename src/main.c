@@ -36,7 +36,7 @@
 
 
 #define DISPLAY_BUFFER_PITCH 128
-//#define ENABLE_LSM6DSO
+#define ENABLE_LSM6DSO
 
 uint8_t buf2[512] = {
 // 'freg', 128x32px
@@ -74,7 +74,7 @@ uint8_t buf2[512] = {
 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
 };
 
-#ifdef DISPLAY
+#ifdef CONFIG_DISPLAY
 static const struct device *display = DEVICE_DT_GET(DT_NODELABEL(ssd1306));
 #endif
 /*
@@ -328,7 +328,7 @@ static void fetch_and_display(const struct device *dev)
 	sensor_channel_get(dev, SENSOR_CHAN_ACCEL_Y, &y);
 	sensor_channel_get(dev, SENSOR_CHAN_ACCEL_Z, &z);
 
-	LOG_INF("accel x:%f ms/2 y:%f ms/2 z:%f ms/2",	out_ev(&x), out_ev(&y), out_ev(&z));
+	LOG_INF("accel x:%f ms/2 y:%f ms/2 z:%f ms/2", out_ev(&x), out_ev(&y), out_ev(&z));
 
 	// lsm6dso gyro 
 	sensor_sample_fetch_chan(dev, SENSOR_CHAN_GYRO_XYZ);
@@ -336,10 +336,7 @@ static void fetch_and_display(const struct device *dev)
 	sensor_channel_get(dev, SENSOR_CHAN_GYRO_Y, &y);
 	sensor_channel_get(dev, SENSOR_CHAN_GYRO_Z, &z);
 
-	LOG_INF("gyro x:%f rad/s y:%f rad/s z:%f rad/s",
-			out_ev(&x), out_ev(&y), out_ev(&z));
-
-	LOG_INF("trig_cnt:%d\n", trig_cnt);
+	LOG_INF("gyro x:%f rad/s y:%f rad/s z:%f rad/s", out_ev(&x), out_ev(&y), out_ev(&z));
 }
 
 static int set_sampling_freq(const struct device *dev)
@@ -397,7 +394,7 @@ void main(void)
 
 #endif
 
-#ifdef DISPLAY
+#ifdef CONFIG_DISPLAY
 
 	if (display == NULL) {
 		LOG_ERR("device pointer is NULL");
